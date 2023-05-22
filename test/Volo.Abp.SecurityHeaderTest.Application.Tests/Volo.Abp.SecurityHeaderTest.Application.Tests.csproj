@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Volo.Abp.SecurityHeaderTest</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Volo.Abp.SecurityHeaderTest.Application\Volo.Abp.SecurityHeaderTest.Application.csproj" />
+    <ProjectReference Include="..\Volo.Abp.SecurityHeaderTest.Domain.Tests\Volo.Abp.SecurityHeaderTest.Domain.Tests.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
+  </ItemGroup>
+
+</Project>

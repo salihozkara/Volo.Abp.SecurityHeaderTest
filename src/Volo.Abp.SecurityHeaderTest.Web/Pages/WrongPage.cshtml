@@ -1,0 +1,12 @@
+﻿@page
+@model Volo.Abp.SecurityHeaderTest.Web.Pages.WrongPage
+
+@{
+    Layout = "Layout";
+}
+
+@section scripts
+{
+    @Html.Raw("<script>alert('Wrong page!');</script>")
+}
+

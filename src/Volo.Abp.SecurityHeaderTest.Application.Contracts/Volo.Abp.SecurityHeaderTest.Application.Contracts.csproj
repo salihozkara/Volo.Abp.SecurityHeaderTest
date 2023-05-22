@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Volo.Abp.SecurityHeaderTest</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Volo.Abp.SecurityHeaderTest.Domain.Shared\Volo.Abp.SecurityHeaderTest.Domain.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="D:\Volosoft\abp\framework\src\Volo.Abp.ObjectExtending\Volo.Abp.ObjectExtending.csproj" />
+    <ProjectReference Include="D:\Volosoft\abp\modules\account\src\Volo.Abp.Account.Application.Contracts\Volo.Abp.Account.Application.Contracts.csproj" />
+    <ProjectReference Include="D:\Volosoft\abp\modules\identity\src\Volo.Abp.Identity.Application.Contracts\Volo.Abp.Identity.Application.Contracts.csproj" />
+    <ProjectReference Include="D:\Volosoft\abp\modules\permission-management\src\Volo.Abp.PermissionManagement.Application.Contracts\Volo.Abp.PermissionManagement.Application.Contracts.csproj" />
+    <ProjectReference Include="D:\Volosoft\abp\modules\tenant-management\src\Volo.Abp.TenantManagement.Application.Contracts\Volo.Abp.TenantManagement.Application.Contracts.csproj" />
+    <ProjectReference Include="D:\Volosoft\abp\modules\feature-management\src\Volo.Abp.FeatureManagement.Application.Contracts\Volo.Abp.FeatureManagement.Application.Contracts.csproj" />
+    <ProjectReference Include="D:\Volosoft\abp\modules\setting-management\src\Volo.Abp.SettingManagement.Application.Contracts\Volo.Abp.SettingManagement.Application.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>
