@@ -371,13 +371,14 @@ var abp = abp || {};
         };
 
         var _loadScript = function (url, loadCallback, failCallback) {
+            var abpCoreScript = $('script[src*="abp.js"],script[src*="abp.min.js"]')[0];
             _loadFromUrl(url, loadCallback, failCallback, function (urlInfo) {
                 $.get({
                     url: url,
                     dataType: 'text'
                 })
                 .done(function (script) {
-                    $.globalEval(script);
+                    $.globalEval(script, { nonce: abpCoreScript.nonce});
                     urlInfo.succeed();
                 })
                 .fail(function () {
