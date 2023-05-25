@@ -99,6 +99,7 @@ public class SecurityHeaderTestWebModule : AbpModule
         {
             options.UseContentSecurityPolicyHeader = true;
             options.UseContentSecurityPolicyNonce = true;
+            options.ContentSecurityPolicyValues["script-src"] = new []{"'self'", "'unsafe-inline'", "'unsafe-eval'"};
         });
 
         context.Services.AddMvc().AddTagHelpersAsServices();
