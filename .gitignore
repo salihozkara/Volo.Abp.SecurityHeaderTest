@@ -261,5 +261,3 @@ src/Volo.Abp.SecurityHeaderTest.DbMigrator/Logs/*
 src/Volo.Abp.SecurityHeaderTest.Blazor.Server/Logs/*
 src/Volo.Abp.SecurityHeaderTest.Blazor.Server.Tiered/Logs/*
 
-# Use abp install-libs to restore.
-**/wwwroot/libs/*
