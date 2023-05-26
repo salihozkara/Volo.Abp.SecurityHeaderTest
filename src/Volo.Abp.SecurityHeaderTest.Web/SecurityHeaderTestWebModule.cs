@@ -1,7 +1,10 @@
 using System.IO;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -95,13 +98,29 @@ public class SecurityHeaderTestWebModule : AbpModule
         ConfigureAutoApiControllers();
         ConfigureSwaggerServices(context.Services);
         
-        Configure<AbpSecurityHeadersOptions>(options =>
+        Configure<AbpSecurityHeadersOptions>(options => 
         {
-            options.UseContentSecurityPolicyHeader = true;
-            options.UseContentSecurityPolicyNonce = true;
-            options.ContentSecurityPolicyValues["script-src"] = new []{"'self'", "'unsafe-inline'", "'unsafe-eval'"};
-        });
+            options.UseContentSecurityPolicyHeader = true; //false by default
+            options.ContentSecurityPolicyValues["object-src"] = new string[] { "'none'" };
+            options.ContentSecurityPolicyValues["form-action"] = new string[] { "'self'" };
+            options.ContentSecurityPolicyValues["frame-ancestors"] = new string[] { "'self'" };
+            options.ContentSecurityPolicyValues["script-src"] = new string[] { "'self'", "'unsafe-inline'", "'unsafe-eval'" };
+            //adding additional security headers
+            options.Headers["Referrer-Policy"] = "no-referrer";
 
+            //adding script-src nonce
+            options.UseContentSecurityPolicyScriptNonce = true; //false by default
+
+            //ignore script nonce source for these paths
+            options.IgnoredScriptNoncePaths.Add("/my-page");
+
+            //ignore script nonce by Elsa Workflows and other selectors
+            options.IgnoredScriptNonceSelectors.Add(context =>
+            {
+                var endpoint = context.GetEndpoint();
+                return Task.FromResult(endpoint?.Metadata.GetMetadata<PageRouteMetadata>()?.RouteTemplate == "/{YOURHOSTPAGE}");
+            });
+        });
         context.Services.AddMvc().AddTagHelpersAsServices();
     }
 
